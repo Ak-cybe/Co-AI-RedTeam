@@ -191,3 +191,40 @@ class TestMemoryStore:
         patterns = store2.get_all_patterns()
         assert len(patterns) == 1
         assert patterns[0].pattern_name == "Persistent"
+
+    def test_counter_survives_deleted_items(self, memory_dir: Path) -> None:
+        """Counter must derive from max ID, not file count.
+
+        Regression test: if VP-002 is deleted, the next ID should be
+        VP-004, not VP-003 (which would collide with an existing file).
+        """
+        store = MemoryStore(memory_dir)
+
+        # Create VP-001, VP-002, VP-003
+        for i in range(3):
+            store.store_pattern(
+                cwe_class="CWE-89",
+                pattern_name=f"Pat-{i}",
+                symptom="s",
+                hypothesis="h",
+                confirming_test="t",
+                confidence=0.8,
+            )
+
+        # Delete VP-002 to create a gap
+        gap_file = memory_dir / "patterns" / "VP-002.json"
+        assert gap_file.exists()
+        gap_file.unlink()
+
+        # Reload store — counter must be 3 (max ID), not 2 (file count)
+        store2 = MemoryStore(memory_dir)
+        new_pattern = store2.store_pattern(
+            cwe_class="CWE-79",
+            pattern_name="After-gap",
+            symptom="s",
+            hypothesis="h",
+            confirming_test="t",
+            confidence=0.9,
+        )
+
+        assert new_pattern.id == "VP-004"  # NOT VP-003 (would collide)

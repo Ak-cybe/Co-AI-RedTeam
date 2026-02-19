@@ -47,12 +47,24 @@ class MemoryStore:
             (self.storage_dir / subdir).mkdir(parents=True, exist_ok=True)
 
     def _load_counters(self) -> None:
-        """Count existing items to set ID counters."""
+        """Derive counters from the highest existing ID in each layer.
+
+        Parsing the max numeric suffix from filenames (e.g. VP-003 → 3)
+        avoids duplicate IDs when items are deleted mid-sequence.
+        """
+        import re
+
+        prefix_map = {"vulnerability_pattern": "VP", "strategy": "ST", "technical_action": "TA"}
+
         for item_type, subdir in self.LAYER_DIRS.items():
             path = self.storage_dir / subdir
-            existing = list(path.glob("*.json"))
-            prefix = {"vulnerability_pattern": "VP", "strategy": "ST", "technical_action": "TA"}
-            self._counters[prefix[item_type]] = len(existing)
+            prefix = prefix_map[item_type]
+            max_id = 0
+            for json_file in path.glob("*.json"):
+                match = re.search(rf"{prefix}-(\d+)", json_file.stem)
+                if match:
+                    max_id = max(max_id, int(match.group(1)))
+            self._counters[prefix] = max_id
 
     def _next_id(self, prefix: str) -> str:
         """Generate the next sequential ID."""

@@ -109,16 +109,24 @@ class ExecutorAgent(BaseAgent):
         working_dir: str | None = None,
         env_vars: dict[str, str] | None = None,
     ) -> ExecutionResult:
-        """Execute command inside a Docker container."""
+        """Execute command inside a Docker container.
+
+        All Docker SDK calls are synchronous, so we offload them to a
+        thread pool via ``asyncio.to_thread`` to avoid blocking the
+        event loop.
+        """
+        import asyncio
         import time
 
         try:
             import docker
 
-            client = docker.from_env()
+            # Docker SDK is synchronous — run in thread pool
+            client = await asyncio.to_thread(docker.from_env)
             start_time = time.time()
 
-            container = client.containers.run(
+            container = await asyncio.to_thread(
+                client.containers.run,
                 image=self.sandbox_config.image,
                 command=["bash", "-c", command],
                 working_dir=working_dir or "/workspace",
@@ -130,13 +138,21 @@ class ExecutorAgent(BaseAgent):
             )
 
             try:
-                exit_result = container.wait(timeout=self.sandbox_config.timeout_seconds)
+                exit_result = await asyncio.to_thread(
+                    container.wait, timeout=self.sandbox_config.timeout_seconds,
+                )
                 exit_code = exit_result.get("StatusCode", -1)
-                stdout = container.logs(stdout=True, stderr=False).decode("utf-8", errors="replace")
-                stderr = container.logs(stdout=False, stderr=True).decode("utf-8", errors="replace")
+                stdout_bytes = await asyncio.to_thread(
+                    container.logs, stdout=True, stderr=False,
+                )
+                stderr_bytes = await asyncio.to_thread(
+                    container.logs, stdout=False, stderr=True,
+                )
+                stdout = stdout_bytes.decode("utf-8", errors="replace")
+                stderr = stderr_bytes.decode("utf-8", errors="replace")
                 timed_out = False
             except Exception:
-                container.stop(timeout=5)
+                await asyncio.to_thread(container.stop, timeout=5)
                 stdout = ""
                 stderr = "Execution timed out"
                 exit_code = -1
@@ -145,7 +161,7 @@ class ExecutorAgent(BaseAgent):
             duration = (time.time() - start_time) * 1000
 
             if self.sandbox_config.remove_after:
-                container.remove(force=True)
+                await asyncio.to_thread(container.remove, force=True)
 
             return ExecutionResult(
                 command=command,

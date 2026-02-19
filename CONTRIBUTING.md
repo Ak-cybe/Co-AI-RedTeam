@@ -6,8 +6,8 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ```bash
 # Clone the repository
-git clone https://github.com/co-ai-redteam/co-ai-redteam.git
-cd co-ai-redteam
+git clone https://github.com/Ak-cybe/Co-AI-RedTeam.git
+cd Co-AI-RedTeam
 
 # Create a virtual environment
 python -m venv .venv

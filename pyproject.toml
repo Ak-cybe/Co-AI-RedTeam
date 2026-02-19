@@ -68,11 +68,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/co-ai-redteam/co-ai-redteam"
-Documentation = "https://co-ai-redteam.github.io/co-ai-redteam"
-Repository = "https://github.com/co-ai-redteam/co-ai-redteam"
-Issues = "https://github.com/co-ai-redteam/co-ai-redteam/issues"
-Changelog = "https://github.com/co-ai-redteam/co-ai-redteam/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/Ak-cybe/Co-AI-RedTeam"
+Repository = "https://github.com/Ak-cybe/Co-AI-RedTeam"
+Issues = "https://github.com/Ak-cybe/Co-AI-RedTeam/issues"
+Changelog = "https://github.com/Ak-cybe/Co-AI-RedTeam/blob/main/CHANGELOG.md"
 
 [project.scripts]
 co-redteam = "co_redteam.cli:main"

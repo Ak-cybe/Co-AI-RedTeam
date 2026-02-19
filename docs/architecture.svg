@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="orchGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff7b72"/>
+      <stop offset="100%" style="stop-color:#d2a8ff"/>
+    </linearGradient>
+    <linearGradient id="discGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#79c0ff"/>
+      <stop offset="100%" style="stop-color:#58a6ff"/>
+    </linearGradient>
+    <linearGradient id="expGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff7b72"/>
+      <stop offset="100%" style="stop-color:#f85149"/>
+    </linearGradient>
+    <linearGradient id="patGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ee787"/>
+      <stop offset="100%" style="stop-color:#56d364"/>
+    </linearGradient>
+    <linearGradient id="repGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d2a8ff"/>
+      <stop offset="100%" style="stop-color:#bc8cff"/>
+    </linearGradient>
+    <linearGradient id="memGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3b341"/>
+      <stop offset="100%" style="stop-color:#d29922"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="520" fill="url(#bg)" rx="8"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#f0f6fc" font-family="'Segoe UI',sans-serif" font-size="18" font-weight="bold" letter-spacing="1">
+    🏗️ Architecture — Multi-Agent Pipeline
+  </text>
+  
+  <!-- ============ ORCHESTRATOR BAR ============ -->
+  <rect x="50" y="55" width="800" height="50" rx="10" fill="#21262d" stroke="url(#orchGrad)" stroke-width="1.5"/>
+  <text x="450" y="77" text-anchor="middle" fill="url(#orchGrad)" font-family="'Segoe UI',sans-serif" font-size="15" font-weight="bold">
+    ORCHESTRATOR
+  </text>
+  <text x="450" y="95" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="10">
+    Pipeline flow · Agent lifecycle · State transitions · Memory coordination
+  </text>
+  
+  <!-- Connection lines from orchestrator -->
+  <line x1="160" y1="105" x2="160" y2="135" stroke="#484f58" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="380" y1="105" x2="380" y2="135" stroke="#484f58" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="600" y1="105" x2="600" y2="135" stroke="#484f58" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="780" y1="105" x2="780" y2="135" stroke="#484f58" stroke-width="1.5" stroke-dasharray="4,3"/>
+  
+  <!-- Phase flow arrow -->
+  <line x1="265" y1="200" x2="290" y2="200" stroke="#30363d" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="475" y1="200" x2="510" y2="200" stroke="#30363d" stroke-width="2"/>
+  <line x1="695" y1="200" x2="720" y2="200" stroke="#30363d" stroke-width="2"/>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#484f58"/>
+    </marker>
+  </defs>
+  
+  <!-- ============ DISCOVERY PHASE ============ -->
+  <g transform="translate(55,135)">
+    <rect width="210" height="220" rx="10" fill="#161b22" stroke="url(#discGrad)" stroke-width="1"/>
+    <!-- Header -->
+    <rect width="210" height="32" rx="10" fill="#21262d"/>
+    <rect y="20" width="210" height="12" fill="#21262d"/>
+    <text x="105" y="22" text-anchor="middle" fill="#79c0ff" font-family="'Segoe UI',sans-serif" font-size="12" font-weight="bold">🔍 DISCOVERY</text>
+    
+    <!-- Analysis Agent -->
+    <rect x="15" y="45" width="180" height="38" rx="6" fill="#0d1117" stroke="#79c0ff" stroke-width="0.8"/>
+    <text x="105" y="62" text-anchor="middle" fill="#79c0ff" font-family="monospace" font-size="11" font-weight="bold">Analysis Agent</text>
+    <text x="105" y="76" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="9">CWE-grounded discovery</text>
+    
+    <!-- Bidirectional arrow -->
+    <text x="105" y="95" text-anchor="middle" fill="#484f58" font-family="monospace" font-size="16">↕</text>
+    
+    <!-- Critique Agent -->
+    <rect x="15" y="100" width="180" height="38" rx="6" fill="#0d1117" stroke="#79c0ff" stroke-width="0.8"/>
+    <text x="105" y="117" text-anchor="middle" fill="#79c0ff" font-family="monospace" font-size="11" font-weight="bold">Critique Agent</text>
+    <text x="105" y="131" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="9">False positive filtering</text>
+    
+    <!-- Loop badge -->
+    <rect x="55" y="148" width="100" height="20" rx="10" fill="#0d1117" stroke="#484f58" stroke-width="0.5"/>
+    <text x="105" y="162" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="9">↻ 3 rounds max</text>
+    
+    <!-- Phase badge -->
+    <rect x="25" y="180" width="160" height="24" rx="5" fill="#0d4429" stroke="#238636" stroke-width="0.5"/>
+    <text x="105" y="196" text-anchor="middle" fill="#7ee787" font-family="'Segoe UI',sans-serif" font-size="10">📊 Confirmed vulns →</text>
+  </g>
+  
+  <!-- Flow arrow 1 -->
+  <path d="M270,245 C295,245 290,245 310,245" fill="none" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- ============ EXPLOITATION PHASE ============ -->
+  <g transform="translate(315,135)">
+    <rect width="210" height="220" rx="10" fill="#161b22" stroke="url(#expGrad)" stroke-width="1"/>
+    <rect width="210" height="32" rx="10" fill="#21262d"/>
+    <rect y="20" width="210" height="12" fill="#21262d"/>
+    <text x="105" y="22" text-anchor="middle" fill="#ff7b72" font-family="'Segoe UI',sans-serif" font-size="12" font-weight="bold">💣 EXPLOITATION</text>
+    
+    <!-- Planner -->
+    <rect x="15" y="42" width="180" height="30" rx="6" fill="#0d1117" stroke="#ff7b72" stroke-width="0.8"/>
+    <text x="105" y="61" text-anchor="middle" fill="#ff7b72" font-family="monospace" font-size="10" font-weight="bold">📋 Planner Agent</text>
+    
+    <!-- Validator -->
+    <rect x="15" y="78" width="180" height="30" rx="6" fill="#0d1117" stroke="#e3b341" stroke-width="0.8"/>
+    <text x="105" y="97" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="10" font-weight="bold">🛡️ Validator Agent</text>
+    
+    <!-- Executor -->
+    <rect x="15" y="114" width="180" height="30" rx="6" fill="#0d1117" stroke="#ff7b72" stroke-width="0.8"/>
+    <text x="105" y="133" text-anchor="middle" fill="#ff7b72" font-family="monospace" font-size="10" font-weight="bold">⚡ Executor Agent</text>
+    
+    <!-- Evaluator -->
+    <rect x="15" y="150" width="180" height="30" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="0.8"/>
+    <text x="105" y="169" text-anchor="middle" fill="#d2a8ff" font-family="monospace" font-size="10" font-weight="bold">🔬 Evaluator Agent</text>
+    
+    <!-- Loop badge -->
+    <rect x="45" y="188" width="120" height="20" rx="10" fill="#0d1117" stroke="#484f58" stroke-width="0.5"/>
+    <text x="105" y="202" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="9">↻ 20 iters max</text>
+  </g>
+  
+  <!-- Flow arrow 2 -->
+  <path d="M530,245 C555,245 550,245 570,245" fill="none" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- ============ PATCHING PHASE ============ -->
+  <g transform="translate(575,135)">
+    <rect width="160" height="220" rx="10" fill="#161b22" stroke="url(#patGrad)" stroke-width="1"/>
+    <rect width="160" height="32" rx="10" fill="#21262d"/>
+    <rect y="20" width="160" height="12" fill="#21262d"/>
+    <text x="80" y="22" text-anchor="middle" fill="#7ee787" font-family="'Segoe UI',sans-serif" font-size="12" font-weight="bold">🔧 PATCHING</text>
+    
+    <!-- Patcher Agent -->
+    <rect x="12" y="45" width="136" height="28" rx="6" fill="#0d1117" stroke="#7ee787" stroke-width="0.8"/>
+    <text x="80" y="64" text-anchor="middle" fill="#7ee787" font-family="monospace" font-size="10" font-weight="bold">Patcher Agent</text>
+    
+    <!-- Steps -->
+    <text x="20" y="92" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="10">1. Root Cause Analysis</text>
+    <text x="20" y="112" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="10">2. Generate Patch</text>
+    <text x="20" y="132" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="10">3. Build + Test</text>
+    <text x="20" y="152" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="10">4. Reflect → Retry</text>
+    
+    <!-- Loop badge -->
+    <rect x="20" y="168" width="120" height="20" rx="10" fill="#0d1117" stroke="#484f58" stroke-width="0.5"/>
+    <text x="80" y="182" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="9">↻ 5 retries max</text>
+    
+    <!-- Output -->
+    <rect x="12" y="198" width="136" height="20" rx="5" fill="#0d4429" stroke="#238636" stroke-width="0.5"/>
+    <text x="80" y="212" text-anchor="middle" fill="#7ee787" font-family="'Segoe UI',sans-serif" font-size="9">✅ Minimal diff patch</text>
+  </g>
+  
+  <!-- Flow arrow 3 -->
+  <path d="M740,245 C755,245 750,245 760,245" fill="none" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+  
+  <!-- ============ REPORTING ============ -->
+  <g transform="translate(765,135)">
+    <rect width="90" height="220" rx="10" fill="#161b22" stroke="url(#repGrad)" stroke-width="1"/>
+    <rect width="90" height="32" rx="10" fill="#21262d"/>
+    <rect y="20" width="90" height="12" fill="#21262d"/>
+    <text x="45" y="22" text-anchor="middle" fill="#d2a8ff" font-family="'Segoe UI',sans-serif" font-size="12" font-weight="bold">📄</text>
+    
+    <rect x="10" y="45" width="70" height="25" rx="5" fill="#0d1117" stroke="#d2a8ff" stroke-width="0.8"/>
+    <text x="45" y="62" text-anchor="middle" fill="#d2a8ff" font-family="monospace" font-size="9">SARIF</text>
+    
+    <rect x="10" y="80" width="70" height="25" rx="5" fill="#0d1117" stroke="#d2a8ff" stroke-width="0.8"/>
+    <text x="45" y="97" text-anchor="middle" fill="#d2a8ff" font-family="monospace" font-size="9">Markdown</text>
+    
+    <text x="45" y="128" text-anchor="middle" fill="#484f58" font-family="'Segoe UI',sans-serif" font-size="8">GitHub</text>
+    <text x="45" y="140" text-anchor="middle" fill="#484f58" font-family="'Segoe UI',sans-serif" font-size="8">Code</text>
+    <text x="45" y="152" text-anchor="middle" fill="#484f58" font-family="'Segoe UI',sans-serif" font-size="8">Scanning</text>
+  </g>
+  
+  <!-- ============ MEMORY LAYER ============ -->
+  <g transform="translate(55,385)">
+    <rect width="800" height="110" rx="10" fill="#161b22" stroke="url(#memGrad)" stroke-width="1"/>
+    <rect width="800" height="30" rx="10" fill="#21262d"/>
+    <rect y="18" width="800" height="12" fill="#21262d"/>
+    <text x="400" y="22" text-anchor="middle" fill="#e3b341" font-family="'Segoe UI',sans-serif" font-size="13" font-weight="bold">
+      🧠 3-Layer Long-Term Memory
+    </text>
+    
+    <!-- Layer 1 -->
+    <rect x="30" y="42" width="220" height="52" rx="8" fill="#0d1117" stroke="#e3b341" stroke-width="0.6"/>
+    <text x="140" y="62" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="11" font-weight="bold">Patterns</text>
+    <text x="140" y="80" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="9">What vulnerabilities look like</text>
+    <text x="140" y="92" text-anchor="middle" fill="#484f58" font-family="monospace" font-size="8">VP-001, VP-002, ...</text>
+    
+    <!-- Layer 2 -->
+    <rect x="280" y="42" width="220" height="52" rx="8" fill="#0d1117" stroke="#e3b341" stroke-width="0.6"/>
+    <text x="390" y="62" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="11" font-weight="bold">Strategies</text>
+    <text x="390" y="80" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="9">How to approach exploitation</text>
+    <text x="390" y="92" text-anchor="middle" fill="#484f58" font-family="monospace" font-size="8">ST-001, ST-002, ...</text>
+    
+    <!-- Layer 3 -->
+    <rect x="530" y="42" width="220" height="52" rx="8" fill="#0d1117" stroke="#e3b341" stroke-width="0.6"/>
+    <text x="640" y="62" text-anchor="middle" fill="#e3b341" font-family="monospace" font-size="11" font-weight="bold">Actions</text>
+    <text x="640" y="80" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',sans-serif" font-size="9">Concrete commands that work</text>
+    <text x="640" y="92" text-anchor="middle" fill="#484f58" font-family="monospace" font-size="8">TA-001, TA-002, ...</text>
+  </g>
+  
+  <!-- Memory connection line -->
+  <path d="M455,355 L455,385" fill="none" stroke="#e3b341" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="473" y="374" fill="#484f58" font-family="'Segoe UI',sans-serif" font-size="8">persist</text>
+</svg>

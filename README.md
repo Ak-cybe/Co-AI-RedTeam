@@ -1,8 +1,12 @@
 <div align="center">
 
-# 🛡️ Co-AI-RedTeam
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/banner.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/banner.svg">
+  <img alt="Co-AI-RedTeam" src="docs/banner.svg" width="100%">
+</picture>
 
-### AI-Powered Multi-Agent Red Teaming Framework
+<br/>
 
 [![CI](https://github.com/Ak-cybe/Co-AI-RedTeam/actions/workflows/ci.yml/badge.svg)](https://github.com/Ak-cybe/Co-AI-RedTeam/actions)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13-blue.svg)](https://python.org)
@@ -23,20 +27,11 @@
 
 Unlike traditional static analysis tools that pattern-match known signatures, CART reasons about vulnerability semantics, constructs evidence chains grounded in CWE/OWASP classifications, and refines its findings through an internal adversarial debate between Analysis and Critique agents before declaring a vulnerability confirmed.
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                     Co-AI-RedTeam Pipeline                          │
-│                                                                     │
-│  📁 Recon    🔍 Discovery    💣 Exploitation    🔧 Patching    📄 Report  │
-│  ───────>>> ────────────>>> ───────────────>>> ───────────>>> ─────>>> │
-│              Analysis ↕       Plan → Validate   RCA → Gen      SARIF  │
-│              Critique         → Execute          → Validate      MD    │
-│              (3 rounds)       → Evaluate         (5 retries)           │
-│                               (20 iterations)                         │
-│                                                                     │
-│  🧠 Long-Term Memory: Patterns │ Strategies │ Actions               │
-└─────────────────────────────────────────────────────────────────────┘
-```
+<div align="center">
+
+<img src="docs/pipeline.svg" alt="Pipeline Flow" width="100%">
+
+</div>
 
 ### Why CART?
 
@@ -156,55 +151,11 @@ cart scan ./your-project -v
 
 ### Example Output
 
-```
-   ____              _    ___   ____          _ _____
-  / ___|___         / \  |_ _| |  _ \ ___  __| |_   _|__  __ _ _ __ ___
- | |   / _ \ _____ / _ \  | |  | |_) / _ \/ _` | | |/ _ \/ _` | '_ ` _ \
- | |__| (_) |_____/ ___ \ | |  |  _ <  __/ (_| | | |  __/ (_| | | | | | |
-  \____\___/     /_/   \_\___| |_| \_\___|\_,_| |_|\___|\_,_|_| |_| |_|
+<div align="center">
 
-⟐ Phase 1: Reconnaissance
-  📁 Files scanned: 47
-  🔧 Tech stack: Python, Flask
+<img src="docs/demo.svg" alt="CART Terminal Demo" width="100%">
 
-⟐ Phase 2: Vulnerability Discovery
-  🔍 Analysis Agent found 5 candidates
-  ✓ Critique 1: 3 approved, 2 rejected
-  ✓ Critique 2: 3 approved, 0 rejected
-  📊 Final: 3 confirmed vulnerabilities
-
-⟐ Phase 3: Exploitation
-  🎯 Targeting: VULN-001 — SQL Injection in user query
-    📋 Plan: 5 steps
-    → Step 1: Identify injection point ✅
-    → Step 2: Craft payload ✅
-    → Step 3: Execute PoC ✅
-    ✅ Exploited (3 iterations)
-
-⟐ Phase 4: Security Patching
-  🔧 Patching: VULN-001 — SQL Injection in user query
-    📍 RCA: f-string interpolation in cursor.execute()
-    ✅ Patch generated (attempt 1, confidence: 92%)
-
-⟐ Phase 5: Reporting
-  📄 Markdown: reports/assessment_report.md
-  📄 SARIF: reports/findings.sarif
-
-⟐ Phase 6: Memory Accumulation
-  🧠 Memory: 3 patterns, 1 strategies, 2 actions
-
-┌──────────────────────────────┐
-│      Assessment Summary      │
-├──────────────┬───────────────┤
-│ Duration     │         42.5s │
-│ Files Scanned│            47 │
-│ Vulns Found  │             3 │
-│   Critical   │             1 │
-│   High       │             1 │
-│   Medium     │             1 │
-│ Patches      │             3 │
-└──────────────┴───────────────┘
-```
+</div>
 
 > **Note:** The output above is illustrative. Actual results depend on the target codebase and LLM provider.
 
@@ -225,37 +176,11 @@ The CLI exits with code `1` if vulnerabilities are found and `0` otherwise, maki
 
 CART coordinates seven specialized agents through a central orchestrator that manages pipeline flow, agent lifecycle, and state transitions:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                       ORCHESTRATOR                          │
-│  Manages pipeline flow, agent lifecycle, state transitions  │
-└──────────┬────────────┬──────────────┬──────────────┬───────┘
-           │            │              │              │
-    ┌──────▼──────┐  ┌──▼───────┐  ┌──▼──────┐  ┌───▼──────┐
-    │  DISCOVERY  │  │ EXPLOIT  │  │ PATCH   │  │ REPORT   │
-    │             │  │          │  │         │  │          │
-    │ ┌─────────┐ │  │ Planner  │  │ RCA     │  │ SARIF    │
-    │ │Analysis │ │  │ Validator│  │ Generate│  │ Markdown │
-    │ │  Agent  │ │  │ Executor │  │ Validate│  │          │
-    │ └────┬────┘ │  │ Evaluator│  │ Reflect │  │          │
-    │      ↕      │  │          │  │         │  │          │
-    │ ┌────┴────┐ │  │          │  │         │  │          │
-    │ │Critique │ │  │          │  │         │  │          │
-    │ │  Agent  │ │  │          │  │         │  │          │
-    │ └─────────┘ │  │          │  │         │  │          │
-    └─────────────┘  └──────────┘  └─────────┘  └──────────┘
-                                                     │
-                        ┌────────────────────────────┘
-                        ▼
-                 ┌──────────────┐
-                 │   MEMORY     │
-                 │ ┌──────────┐ │
-                 │ │ Patterns │ │  Layer 1: What vulnerabilities look like
-                 │ │Strategies│ │  Layer 2: How to approach exploitation
-                 │ │ Actions  │ │  Layer 3: Concrete commands that work
-                 │ └──────────┘ │
-                 └──────────────┘
-```
+<div align="center">
+
+<img src="docs/architecture.svg" alt="Architecture Diagram" width="100%">
+
+</div>
 
 ### Data Flow
 

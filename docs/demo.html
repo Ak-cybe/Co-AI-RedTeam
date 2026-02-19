@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CART Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .terminal {
+    width: 820px;
+    background: #161b22;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(139,92,246,0.08);
+    overflow: hidden;
+    border: 1px solid #30363d;
+  }
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #1c2128;
+    border-bottom: 1px solid #30363d;
+    gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    color: #8b949e;
+    font-size: 13px;
+    margin-right: 40px;
+  }
+  .terminal-body {
+    padding: 20px;
+    min-height: 520px;
+    color: #c9d1d9;
+    font-size: 13.5px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  .line { opacity: 0; transform: translateY(4px); white-space: pre; }
+  .line.visible { opacity: 1; transform: translateY(0); transition: all 0.15s ease; }
+  .prompt { color: #7ee787; }
+  .cmd { color: #79c0ff; font-weight: bold; }
+  .dim { color: #484f58; }
+  .red { color: #ff7b72; font-weight: bold; }
+  .green { color: #7ee787; }
+  .cyan { color: #79c0ff; }
+  .yellow { color: #e3b341; }
+  .purple { color: #d2a8ff; }
+  .bold { font-weight: bold; }
+  .white { color: #f0f6fc; font-weight: bold; }
+  .banner { color: #ff7b72; font-weight: bold; font-size: 12px; line-height: 1.35; }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #58a6ff;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="terminal">
+  <div class="terminal-header">
+    <div class="dot dot-red"></div>
+    <div class="dot dot-yellow"></div>
+    <div class="dot dot-green"></div>
+    <div class="terminal-title">cart scan — Co-AI-RedTeam v0.1.0</div>
+  </div>
+  <div class="terminal-body" id="output"></div>
+</div>
+
+<script>
+const lines = [
+  { text: '$ cart scan ./vulnerable-app --severity medium', cls: 'prompt', delay: 400 },
+  { text: '', delay: 300 },
+  { text: '   ____              _    ___   ____          _ _____', cls: 'banner', delay: 40 },
+  { text: '  / ___|___         / \\  |_ _| |  _ \\ ___  __| |_   _|__  __ _ _ __ ___', cls: 'banner', delay: 40 },
+  { text: ' | |   / _ \\ _____ / _ \\  | |  | |_) / _ \\/ _` | | |/ _ \\/ _` | \'_ ` _ \\', cls: 'banner', delay: 40 },
+  { text: ' | |__| (_) |_____/ ___ \\ | |  |  _ <  __/ (_| | | |  __/ (_| | | | | | |', cls: 'banner', delay: 40 },
+  { text: '  \\____\\___/     /_/   \\_\\___| |_| \\_\\___|\\__,_| |_|\\___|\\__,_|_| |_| |_|', cls: 'banner', delay: 40 },
+  { text: '', delay: 200 },
+  { text: ' v0.1.0 — Multi-Agent Red Team Assessment', cls: 'dim', delay: 300 },
+  { text: '', delay: 400 },
+  { text: '⟐ Phase 1: Reconnaissance', cls: 'white', delay: 500 },
+  { text: '  📁 Files scanned: 23', cls: 'cyan', delay: 300 },
+  { text: '  🔧 Tech stack: Python, Flask, SQLite', cls: 'cyan', delay: 300 },
+  { text: '', delay: 400 },
+  { text: '⟐ Phase 2: Vulnerability Discovery', cls: 'white', delay: 500 },
+  { text: '  🔍 Analysis Agent: 6 candidates identified', cls: 'purple', delay: 600 },
+  { text: '  ✓ Critique Round 1: 4 approved, 2 need refinement', cls: 'green', delay: 500 },
+  { text: '  ✓ Critique Round 2: 4 approved, 0 rejected', cls: 'green', delay: 400 },
+  { text: '  📊 Final: 4 confirmed vulnerabilities', cls: 'yellow', delay: 300 },
+  { text: '', delay: 400 },
+  { text: '⟐ Phase 3: Exploitation', cls: 'white', delay: 500 },
+  { text: '  🎯 VULN-001 — SQL Injection (CWE-89)', cls: 'red', delay: 400 },
+  { text: '    📋 Plan: 4 steps  ✅ Validated', cls: 'cyan', delay: 300 },
+  { text: '    → Execute PoC in sandbox  ✅ Exploited (2 iter)', cls: 'green', delay: 400 },
+  { text: '  🎯 VULN-002 — Command Injection (CWE-78)', cls: 'red', delay: 400 },
+  { text: '    📋 Plan: 3 steps  ✅ Validated', cls: 'cyan', delay: 300 },
+  { text: '    → Execute PoC in sandbox  ✅ Exploited (1 iter)', cls: 'green', delay: 400 },
+  { text: '', delay: 400 },
+  { text: '⟐ Phase 4: Security Patching', cls: 'white', delay: 500 },
+  { text: '  🔧 VULN-001 — Parameterized queries  ✅ Patch OK', cls: 'green', delay: 400 },
+  { text: '  🔧 VULN-002 — subprocess.run(list)   ✅ Patch OK', cls: 'green', delay: 400 },
+  { text: '', delay: 400 },
+  { text: '⟐ Phase 5: Reporting', cls: 'white', delay: 400 },
+  { text: '  📄 reports/assessment_report.md', cls: 'cyan', delay: 250 },
+  { text: '  📄 reports/findings.sarif', cls: 'cyan', delay: 250 },
+  { text: '', delay: 300 },
+  { text: '⟐ Phase 6: Memory', cls: 'white', delay: 400 },
+  { text: '  🧠 Stored: 4 patterns, 2 strategies, 3 actions', cls: 'purple', delay: 400 },
+  { text: '', delay: 500 },
+  { text: '┌──────────────────────────────────┐', cls: 'cyan', delay: 100 },
+  { text: '│       Assessment Complete ✅      │', cls: 'cyan', delay: 100 },
+  { text: '├────────────────┬─────────────────┤', cls: 'cyan', delay: 100 },
+  { text: '│ Duration       │          38.2s  │', cls: 'cyan', delay: 100 },
+  { text: '│ Vulns Found    │          4      │', cls: 'cyan', delay: 100 },
+  { text: '│  Critical      │          1      │', cls: 'red',  delay: 100 },
+  { text: '│  High          │          2      │', cls: 'yellow', delay: 100 },
+  { text: '│  Medium        │          1      │', cls: 'cyan', delay: 100 },
+  { text: '│ Patches        │          4/4    │', cls: 'green', delay: 100 },
+  { text: '└────────────────┴─────────────────┘', cls: 'cyan', delay: 100 },
+];
+
+const output = document.getElementById('output');
+let currentLine = 0;
+
+function addLine() {
+  if (currentLine >= lines.length) return;
+  const { text, cls, delay } = lines[currentLine];
+  const el = document.createElement('div');
+  el.className = 'line';
+  if (cls === 'prompt') {
+    el.innerHTML = `<span class="prompt">$</span> <span class="cmd">${text.slice(2)}</span>`;
+  } else {
+    el.className = `line ${cls || ''}`;
+    el.textContent = text;
+  }
+  output.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('visible'));
+  currentLine++;
+  
+  // Auto-scroll
+  output.scrollTop = output.scrollHeight;
+  
+  setTimeout(addLine, delay);
+}
+
+// Start after a brief pause
+setTimeout(addLine, 800);
+</script>
+</body>
+</html>

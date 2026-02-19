@@ -1,51 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="820" height="600" viewBox="0 0 820 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="580" viewBox="0 0 820 580">
   <defs>
-    <style>
-      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-      @keyframes typing { from { width: 0; } to { width: 100%; } }
-      @keyframes blink { 50% { opacity: 0; } }
-      .line { opacity: 0; animation: fadeIn 0.2s ease forwards; }
-      .L1  { animation-delay: 0.3s; }
-      .L2  { animation-delay: 0.6s; }
-      .L3  { animation-delay: 0.65s; }
-      .L4  { animation-delay: 0.70s; }
-      .L5  { animation-delay: 0.75s; }
-      .L6  { animation-delay: 0.80s; }
-      .L7  { animation-delay: 0.85s; }
-      .L8  { animation-delay: 1.3s; }
-      .L9  { animation-delay: 2.0s; }
-      .L10 { animation-delay: 2.4s; }
-      .L11 { animation-delay: 2.7s; }
-      .L12 { animation-delay: 3.4s; }
-      .L13 { animation-delay: 3.8s; }
-      .L14 { animation-delay: 4.5s; }
-      .L15 { animation-delay: 5.0s; }
-      .L16 { animation-delay: 5.3s; }
-      .L17 { animation-delay: 5.8s; }
-      .L18 { animation-delay: 6.4s; }
-      .L19 { animation-delay: 6.8s; }
-      .L20 { animation-delay: 7.2s; }
-      .L21 { animation-delay: 7.6s; }
-      .L22 { animation-delay: 8.1s; }
-      .L23 { animation-delay: 8.5s; }
-      .L24 { animation-delay: 8.9s; }
-      .L25 { animation-delay: 9.3s; }
-      .L26 { animation-delay: 9.7s; }
-      .L27 { animation-delay: 10.1s; }
-      .L28 { animation-delay: 10.3s; }
-      .L29 { animation-delay: 10.5s; }
-      .L30 { animation-delay: 10.7s; }
-      .L31 { animation-delay: 10.9s; }
-      .L32 { animation-delay: 11.1s; }
-      .L33 { animation-delay: 11.3s; }
-      .L34 { animation-delay: 11.5s; }
-      .L35 { animation-delay: 11.7s; }
-      .cursor-blink { animation: blink 1s step-end infinite; }
-    </style>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#161b22"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
   </defs>
   
   <!-- Terminal window -->
-  <rect width="820" height="600" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <rect width="820" height="580" rx="12" fill="url(#termBg)" stroke="#30363d" stroke-width="1"/>
   
   <!-- Title bar -->
   <rect width="820" height="40" rx="12" fill="#1c2128"/>
@@ -58,60 +20,59 @@
   <circle cx="60" cy="20" r="6" fill="#28c840"/>
   
   <!-- Title -->
-  <text x="410" y="25" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI',monospace" font-size="12">cart scan — Co-AI-RedTeam v0.1.0</text>
+  <text x="410" y="25" text-anchor="middle" fill="#8b949e" font-family="'Consolas','Cascadia Code',monospace" font-size="12">cart scan — Co-AI-RedTeam v0.1.0</text>
   
-  <!-- Terminal body -->
-  <g font-family="'Consolas','Cascadia Code',monospace" font-size="12.5">
+  <!-- Terminal content -->
+  <g font-family="'Consolas','Cascadia Code','Courier New',monospace" font-size="12.5">
     
     <!-- Command prompt -->
-    <text class="line L1" x="20" y="68">
+    <text x="20" y="68">
       <tspan fill="#7ee787">$</tspan>
       <tspan fill="#79c0ff" font-weight="bold"> cart scan ./vulnerable-app --severity medium</tspan>
     </text>
     
     <!-- ASCII Banner -->
-    <text class="line L2" x="20" y="95"  fill="#ff7b72" font-size="10.5">   ____              _    ___   ____          _ _____</text>
-    <text class="line L3" x="20" y="109" fill="#ff7b72" font-size="10.5">  / ___|___         / \  |_ _| |  _ \ ___  __| |_   _|__  __ _ _ __ ___</text>
-    <text class="line L4" x="20" y="123" fill="#ff7b72" font-size="10.5"> | |   / _ \ _____ / _ \  | |  | |_) / _ \/ _` | | |/ _ \/ _` | '_ ` _ \</text>
-    <text class="line L5" x="20" y="137" fill="#ff7b72" font-size="10.5"> | |__| (_) |_____/ ___ \ | |  |  _ &lt;  __/ (_| | | |  __/ (_| | | | | | |</text>
-    <text class="line L6" x="20" y="151" fill="#ff7b72" font-size="10.5">  \____\___/     /_/   \_\___| |_| \_\___|__,_| |_|\___|__,_|_| |_| |_|</text>
-    <text class="line L7" x="20" y="172" fill="#484f58" font-size="11"> v0.1.0 — Multi-Agent Red Team Assessment</text>
+    <text x="20" y="95"  fill="#ff7b72" font-size="10.5">   ____              _    ___   ____          _ _____</text>
+    <text x="20" y="108" fill="#ff7b72" font-size="10.5">  / ___|___         / \  |_ _| |  _ \ ___  __| |_   _|__  __ _ _ __ ___</text>
+    <text x="20" y="121" fill="#ff7b72" font-size="10.5"> | |   / _ \ _____ / _ \  | |  | |_) / _ \/ _` | | |/ _ \/ _` | '_ ` _ \</text>
+    <text x="20" y="134" fill="#ff7b72" font-size="10.5"> | |__| (_) |_____/ ___ \ | |  |  _ &lt;  __/ (_| | | |  __/ (_| | | | | | |</text>
+    <text x="20" y="147" fill="#ff7b72" font-size="10.5">  \____\___/     /_/   \_\___| |_| \_\___|__,_| |_|\___|__,_|_| |_| |_|</text>
+    <text x="20" y="167" fill="#484f58" font-size="11"> v0.1.0 — Multi-Agent Red Team Assessment</text>
     
     <!-- Phase 1 -->
-    <text class="line L8" x="20" y="200" fill="#f0f6fc" font-weight="bold">⟐ Phase 1: Reconnaissance</text>
-    <text class="line L9" x="20" y="218" fill="#79c0ff">  📁 Files scanned: 23</text>
-    <text class="line L10" x="20" y="236" fill="#79c0ff">  🔧 Tech stack: Python, Flask, SQLite</text>
+    <text x="20" y="195" fill="#f0f6fc" font-weight="bold">⟐ Phase 1: Reconnaissance</text>
+    <text x="20" y="213" fill="#79c0ff">  📁 Files scanned: 23</text>
+    <text x="20" y="231" fill="#79c0ff">  🔧 Tech stack: Python, Flask, SQLite</text>
     
     <!-- Phase 2 -->
-    <text class="line L11" x="20" y="262" fill="#f0f6fc" font-weight="bold">⟐ Phase 2: Vulnerability Discovery</text>
-    <text class="line L12" x="20" y="280" fill="#d2a8ff">  🔍 Analysis Agent: 6 candidates identified</text>
-    <text class="line L13" x="20" y="298" fill="#7ee787">  ✓ Critique Round 1: 4 approved, 2 rejected</text>
-    <text class="line L14" x="20" y="316" fill="#7ee787">  ✓ Critique Round 2: 4 approved, 0 rejected</text>
-    <text class="line L15" x="20" y="334" fill="#e3b341">  📊 Final: 4 confirmed vulnerabilities</text>
+    <text x="20" y="257" fill="#f0f6fc" font-weight="bold">⟐ Phase 2: Vulnerability Discovery</text>
+    <text x="20" y="275" fill="#d2a8ff">  🔍 Analysis Agent: 6 candidates identified</text>
+    <text x="20" y="293" fill="#7ee787">  ✓ Critique Round 1: 4 approved, 2 rejected</text>
+    <text x="20" y="311" fill="#7ee787">  ✓ Critique Round 2: 4 approved, 0 rejected</text>
+    <text x="20" y="329" fill="#e3b341">  📊 Final: 4 confirmed vulnerabilities</text>
     
     <!-- Phase 3 -->
-    <text class="line L16" x="20" y="360" fill="#f0f6fc" font-weight="bold">⟐ Phase 3: Exploitation</text>
-    <text class="line L17" x="20" y="378" fill="#ff7b72">  🎯 VULN-001 — SQL Injection (CWE-89)</text>
-    <text class="line L18" x="20" y="396" fill="#79c0ff">    📋 Plan: 4 steps  ✅ Validated</text>
-    <text class="line L19" x="20" y="414" fill="#7ee787">    → Execute PoC in sandbox  ✅ Exploited (2 iter)</text>
+    <text x="20" y="355" fill="#f0f6fc" font-weight="bold">⟐ Phase 3: Exploitation</text>
+    <text x="20" y="373" fill="#ff7b72">  🎯 VULN-001 — SQL Injection (CWE-89)</text>
+    <text x="20" y="391" fill="#79c0ff">    📋 Plan: 4 steps  ✅ Validated</text>
+    <text x="20" y="409" fill="#7ee787">    → Execute PoC in sandbox  ✅ Exploited (2 iter)</text>
+    <text x="20" y="427" fill="#ff7b72">  🎯 VULN-002 — Command Injection (CWE-78)</text>
+    <text x="20" y="445" fill="#7ee787">    → Execute PoC in sandbox  ✅ Exploited (1 iter)</text>
     
-    <!-- Phase 4 -->
-    <text class="line L20" x="20" y="440" fill="#f0f6fc" font-weight="bold">⟐ Phase 4: Security Patching</text>
-    <text class="line L21" x="20" y="458" fill="#7ee787">  🔧 VULN-001 — Parameterized queries  ✅ Patch OK</text>
+    <!-- Phase 4 & 5 -->
+    <text x="20" y="471" fill="#f0f6fc" font-weight="bold">⟐ Phase 4: Patching</text>
+    <text x="20" y="489" fill="#7ee787">  🔧 VULN-001 — Parameterized queries  ✅ Patch OK</text>
+    <text x="20" y="507" fill="#7ee787">  🔧 VULN-002 — subprocess.run(list)   ✅ Patch OK</text>
     
-    <!-- Phase 5 -->
-    <text class="line L22" x="20" y="484" fill="#f0f6fc" font-weight="bold">⟐ Phase 5: Reporting</text>
-    <text class="line L23" x="20" y="502" fill="#79c0ff">  📄 reports/assessment_report.md  📄 reports/findings.sarif</text>
-    
-    <!-- Summary table -->
-    <text class="line L25" x="20" y="528" fill="#79c0ff">┌────────────────────────────────┐</text>
-    <text class="line L26" x="20" y="543" fill="#79c0ff">│</text>
-    <text class="line L26" x="42" y="543" fill="#f0f6fc" font-weight="bold">Assessment Complete</text>
-    <text class="line L26" x="235" y="543" fill="#7ee787" font-weight="bold">✅</text>
-    <text class="line L26" x="265" y="543" fill="#79c0ff">│</text>
-    <text class="line L27" x="20" y="558" fill="#79c0ff">│</text>
-    <text class="line L27" x="42" y="558" fill="#8b949e">Vulns: 4  Patches: 4/4  38.2s</text>
-    <text class="line L27" x="265" y="558" fill="#79c0ff">│</text>
-    <text class="line L28" x="20" y="573" fill="#79c0ff">└────────────────────────────────┘</text>
+    <!-- Summary box -->
+    <text x="20" y="533" fill="#79c0ff">┌──────────────────────────────────┐</text>
+    <text x="20" y="548" fill="#79c0ff">│</text>
+    <text x="34" y="548" fill="#f0f6fc" font-weight="bold"> Assessment Complete</text>
+    <text x="210" y="548" fill="#7ee787" font-weight="bold">✅</text>
+    <text x="266" y="548" fill="#79c0ff">│</text>
+    <text x="20" y="563" fill="#79c0ff">│</text>
+    <text x="34" y="563" fill="#8b949e"> Vulns: 4  Patches: 4/4  38.2s</text>
+    <text x="266" y="563" fill="#79c0ff">│</text>
+    <text x="20" y="578" fill="#79c0ff">└──────────────────────────────────┘</text>
   </g>
 </svg>

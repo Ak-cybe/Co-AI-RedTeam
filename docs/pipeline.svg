@@ -7,64 +7,48 @@
     <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6" fill="#484f58"/>
     </marker>
-    <style>
-      @keyframes pulse1 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      @keyframes pulse2 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      @keyframes pulse3 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      @keyframes pulse4 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      @keyframes pulse5 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      @keyframes pulse6 { 0%,100%{opacity:0.6} 50%{opacity:1} }
-      .p1 { animation: pulse1 3s ease-in-out infinite 0s; }
-      .p2 { animation: pulse2 3s ease-in-out infinite 0.5s; }
-      .p3 { animation: pulse3 3s ease-in-out infinite 1s; }
-      .p4 { animation: pulse4 3s ease-in-out infinite 1.5s; }
-      .p5 { animation: pulse5 3s ease-in-out infinite 2s; }
-      .p6 { animation: pulse6 3s ease-in-out infinite 2.5s; }
-    </style>
   </defs>
   
   <rect width="900" height="100" fill="url(#bg)" rx="8"/>
   
-  <!-- Phase boxes -->
-  <g font-family="'Segoe UI',sans-serif">
+  <g font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
     <!-- Recon -->
-    <rect class="p1" x="18" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#79c0ff" stroke-width="1.2"/>
+    <rect x="18" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#79c0ff" stroke-width="1.2"/>
     <text x="78" y="47" text-anchor="middle" fill="#79c0ff" font-size="11" font-weight="bold">📁 Recon</text>
     <text x="78" y="65" text-anchor="middle" fill="#8b949e" font-size="9">File tree · Stack</text>
     
-    <!-- Arrow -->
     <line x1="143" y1="50" x2="163" y2="50" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr)"/>
     
     <!-- Discovery -->
-    <rect class="p2" x="168" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#58a6ff" stroke-width="1.2"/>
+    <rect x="168" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#58a6ff" stroke-width="1.2"/>
     <text x="228" y="47" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">🔍 Discovery</text>
     <text x="228" y="65" text-anchor="middle" fill="#8b949e" font-size="9">Analyze ↕ Critique</text>
     
     <line x1="293" y1="50" x2="313" y2="50" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr)"/>
     
     <!-- Exploitation -->
-    <rect class="p3" x="318" y="20" width="130" height="60" rx="10" fill="#21262d" stroke="#ff7b72" stroke-width="1.2"/>
+    <rect x="318" y="20" width="130" height="60" rx="10" fill="#21262d" stroke="#ff7b72" stroke-width="1.2"/>
     <text x="383" y="47" text-anchor="middle" fill="#ff7b72" font-size="11" font-weight="bold">💣 Exploitation</text>
     <text x="383" y="65" text-anchor="middle" fill="#8b949e" font-size="9">Plan→Valid→Exec→Eval</text>
     
     <line x1="453" y1="50" x2="473" y2="50" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr)"/>
     
     <!-- Patching -->
-    <rect class="p4" x="478" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#7ee787" stroke-width="1.2"/>
+    <rect x="478" y="20" width="120" height="60" rx="10" fill="#21262d" stroke="#7ee787" stroke-width="1.2"/>
     <text x="538" y="47" text-anchor="middle" fill="#7ee787" font-size="11" font-weight="bold">🔧 Patching</text>
     <text x="538" y="65" text-anchor="middle" fill="#8b949e" font-size="9">RCA→Gen→Validate</text>
     
     <line x1="603" y1="50" x2="623" y2="50" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr)"/>
     
     <!-- Reporting -->
-    <rect class="p5" x="628" y="20" width="110" height="60" rx="10" fill="#21262d" stroke="#d2a8ff" stroke-width="1.2"/>
+    <rect x="628" y="20" width="110" height="60" rx="10" fill="#21262d" stroke="#d2a8ff" stroke-width="1.2"/>
     <text x="683" y="47" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">📄 Report</text>
     <text x="683" y="65" text-anchor="middle" fill="#8b949e" font-size="9">SARIF · Markdown</text>
     
     <line x1="743" y1="50" x2="763" y2="50" stroke="#484f58" stroke-width="1.5" marker-end="url(#arr)"/>
     
     <!-- Memory -->
-    <rect class="p6" x="768" y="20" width="110" height="60" rx="10" fill="#21262d" stroke="#e3b341" stroke-width="1.2"/>
+    <rect x="768" y="20" width="110" height="60" rx="10" fill="#21262d" stroke="#e3b341" stroke-width="1.2"/>
     <text x="823" y="47" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="bold">🧠 Memory</text>
     <text x="823" y="65" text-anchor="middle" fill="#8b949e" font-size="9">Persist patterns</text>
   </g>

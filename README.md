@@ -82,6 +82,9 @@ export GEMINI_API_KEY="your-api-key"
 
 # Or OpenAI
 export OPENAI_API_KEY="your-api-key"
+
+# Or Anthropic (Claude)
+export ANTHROPIC_API_KEY="your-api-key"
 ```
 
 ### Run Your First Scan
@@ -237,8 +240,8 @@ target_path: ./my-project
 scope: full
 
 llm:
-  provider: gemini
-  model: gemini-2.5-pro
+  provider: gemini  # Options: gemini, openai, anthropic
+  model: gemini-2.5-pro  # Or: gpt-4o, claude-sonnet-4-20250514
   temperature: 0.1
 
 discovery:
